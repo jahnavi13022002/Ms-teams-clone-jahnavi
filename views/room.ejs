@@ -29,49 +29,49 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="main" >
-    <!-- left part of screen -->
-    <div class="main_left">
-      <div class="main_videos">
-        <div id="video-grid">
-        </div>
-      </div>
-      <div class="main_controls">
-          <div class="main_controls_block">
-              <div onclick="muteUnmute()" class="main_controls_button main_mute_button">
-                <i class="fas fa-microphone"></i>
-                  <span>Mute</span>
+    <div class="main" >
+        <!-- left part of screen -->
+        <div class="main_left">
+          <div class="main_videos">
+            <div id="video-grid">
+            </div>
+          </div>
+          <div class="main_controls">
+              <div class="main_controls_block">
+                  <div onclick="muteUnmute()" class="main_controls_button main_mute_button">
+                    <i class="fas fa-microphone"></i>
+                      <span>Mute</span>
+                  </div>
+                  <div  onclick="playStop()" class="main_controls_button main_video_button">
+                    <i class="fas fa-video"></i>
+                    <span>Stop Video</span>
+                </div>
               </div>
-              <div  onclick="playStop()" class="main_controls_button main_video_button">
-                <i class="fas fa-video"></i>
-                <span>Stop Video</span>
-            </div>
+              <div class="main_controls_block">
+                <div class="main_controls_button">
+                  <span class="leave_meeting">Leave Meeting</span>
+                </div>
+              </div>
+    
           </div>
-          <div class="main_controls_block">
-            <div class="main_controls_button">
-              <span class="leave_meeting">Leave Meeting</span>
-            </div>
-          </div>
-
+        </div>
+    
+        <div class="main_right">
+          <div class="main_header">
+            <h6>Chat</h6>
+          </div> 
+          <div class="main_chat_window">
+            <ul class="messages">
+               
+            </ul>
+    
+         </div>
+         <div class="main_message_container">
+            <input id="chat_message" type="text" placeholder="Type message here...">
+         </div>
       </div>
+     
+    
     </div>
-
-    <div class="main_right">
-      <div class="main_header">
-        <h6>Chat</h6>
-      </div> 
-      <div class="main_chat_window">
-        <ul class="messages">
-           
-        </ul>
-
-     </div>
-     <div class="main_message_container">
-        <input id="chat_message" type="text" placeholder="Type message here...">
-     </div>
-  </div>
- 
-
-</div>
 </body>
 </html>

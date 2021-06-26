@@ -14,14 +14,12 @@ app.get('/', (req, res) => {
 app.get('/:room',(req,res)=>{
     res.render('room',{roomId: req.params.room})
 })
-
 io.on('connection',socket=>{
     socket.on('join-room',(roomId,userId)=>{
         socket.join(roomId)
         socket.to(roomId).emit('user-connected',userId)
 
         socket.on('message', (message) => {
-            //send message to the same room
             io.to(roomId).emit('createMessage', message)
         }); 
       
@@ -29,11 +27,10 @@ io.on('connection',socket=>{
             socket.to(roomId).emit('user-disconnected',userId)
         })
 
-        // socket.on('message',message =>{
-        //     io.to(roomId).emit('createMessage',message)
-        // })
-    
+       
     })
 })
+
+
 
 server.listen(process.env.PORT||3000)
