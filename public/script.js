@@ -1,20 +1,20 @@
 const socket=io('/')
 const videoGrid=document.getElementById('video-grid')
-const myPeer = new Peer(undefined,{
-    host: '/',
-    port: '3001',
-  })
+// const myPeer = new Peer(undefined,{
+//     host: '/',
+//     port: '3001',
+//   })
+const myPeer = new Peer(undefined, { host: "peerjs-server.herokuapp.com", secure: true, port: 443, });
+   //ADDITIONAL CODE (showing different grids)
+   var getUserMedia =
+   navigator.getUserMedia ||
+   navigator.webkitGetUserMedia ||
+   navigator.mozGetUserMedia;
 
-  //ADDITIONAL CODE (showing different grids)
-  var getUserMedia =
-navigator.getUserMedia ||
-navigator.webkitGetUserMedia ||
-navigator.mozGetUserMedia;
+  const myVideo=document.createElement('video')
+  myVideo.muted=true
 
-const myVideo=document.createElement('video')
-myVideo.muted=true
-
-const peers={}
+  const peers={}
   
   let myVideoStream
   navigator.mediaDevices.getUserMedia({
@@ -38,7 +38,7 @@ const peers={}
 
   })
   let text = $("input");
-// when press enter send message
+//when press enter send message
 $('html').keydown(function (e) {
   if (e.which == 13 && text.val().length !== 0) {
     socket.emit('message', text.val());
@@ -51,18 +51,17 @@ socket.on("createMessage", message => {
 })
 
   })
-
-  
-socket.on('user-disconnected',userId =>{
-    if(peers[userId]) peers[userId].close()
+  socket.on('user-disconnected',userId =>{
+     if(peers[userId]) peers[userId].close()
+    //console.log(userId)
    })
 
-myPeer.on('open',id =>{
-      socket.emit('join-room',ROOM_ID,id)  
-   })
+  myPeer.on('open',id =>{
+    socket.emit('join-room',ROOM_ID,id)  
+ })
 
-   //two show different grids ADDITIONAL CODE 
-   myPeer.on("call", function(call){
+ //two show different grids ADDITIONAL CODE 
+ myPeer.on("call", function(call){
     getUserMedia({
           video:true,
           audio:true
@@ -78,7 +77,7 @@ myPeer.on('open',id =>{
       })
    })
 
-   function connectToNewUser(userId,stream){
+ function connectToNewUser(userId,stream){
     const call=myPeer.call(userId,stream)
     const video=document.createElement('video')
     call.on('stream',userVideoStream =>{
@@ -87,7 +86,7 @@ myPeer.on('open',id =>{
     call.on('close', ()=>{
       video.remove()
     }) 
-    peers[userId]=call
+     peers[userId]=call
 }
 
 function addVideoStream(video,stream){
