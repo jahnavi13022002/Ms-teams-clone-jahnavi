@@ -4,7 +4,8 @@ const videoGrid=document.getElementById('video-grid')
 //     host: '/',
 //     port: '3001',
 //   })
-const myPeer = new Peer(undefined, { host: "peerjs-server.herokuapp.com", secure: true, port: 443, });
+//const myPeer = new Peer(undefined, { host: "peerjs-server.herokuapp.com", secure: true, port: 443, });
+const myPeer = new Peer();
    //ADDITIONAL CODE (showing different grids)
    var getUserMedia =
    navigator.getUserMedia ||
@@ -153,3 +154,7 @@ const muteUnmute = () => {
     `
     document.querySelector('.main_video_button').innerHTML = html;
   }
+ const scrollToBottom =()=>{
+   var d=$('.main_chat_window');
+   d.scrollTop(d.prop("scrollHeight"));
+ }

@@ -30,15 +30,15 @@ video{
 }
 .main_videos{
     flex-grow: 1;
-    background:#E0E0E0;
+    background:#0d4a9b;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .main_controls{
     display: flex;
-    background-color: #1C1E20;
-    color: #D2D2D2;
+    background-color: #8fbae5;
+    color: #051109;
     padding: 5px;
     justify-content: space-between;
 }
@@ -56,7 +56,7 @@ video{
     font-size: 20px;
 }
 .main_controls_button:hover{
-    background-color:#343434;
+    background-color:#76e7a9;
     border-radius: 5px;
 }
 .leave_meeting{
@@ -65,31 +65,32 @@ video{
  .main_right {
     display: flex;
     flex-direction: column;
-    background-color: #242324;
+    background-color: #8fbae5;
     border-left: 1px solid #3d3d42;
 }
 .main_header {
   
-    color: #F5F5F5;
+    color: #5418e2;
     text-align: center;
 }
 .main_chat_window {
     flex-grow: 1;
+    overflow-y: scroll;
    
 }
 .main_message_container {
     padding: 22px 12px;
     display: flex;
 }
-
+ 
 .main__message_container input {
     flex-grow: 1;
     background-color: transparent;
     border: none;
     color: #F5F5F5;
-}
+} 
 .messages{
-    color: white;
+    color: #3b0da7;
     list-style: none;
 } 
 
