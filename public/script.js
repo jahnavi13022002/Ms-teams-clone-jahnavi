@@ -1,10 +1,6 @@
 const socket=io('/')
 const videoGrid=document.getElementById('video-grid')
-// const myPeer = new Peer(undefined,{
-//     host: '/',
-//     port: '3001',
-//   })
-//const myPeer = new Peer(undefined, { host: "peerjs-server.herokuapp.com", secure: true, port: 443, });
+
 const myPeer = new Peer();
    //ADDITIONAL CODE (showing different grids)
    var getUserMedia =
@@ -15,8 +11,9 @@ const myPeer = new Peer();
   const myVideo=document.createElement('video')
   myVideo.muted=true
 
-  const peers={}
+  const peers={} //FOR KEEPING TRACK OF ALL PEERS
   
+  //STREAMING OUR VIDEO 
   let myVideoStream
   navigator.mediaDevices.getUserMedia({
       video: true,
@@ -25,6 +22,7 @@ const myPeer = new Peer();
     myVideoStream=stream
   addVideoStream(myVideo,stream)
   
+  //CALLING OTHER USERS
   myPeer.on('call', call => {
     call.answer(stream)
     const video = document.createElement('video')
@@ -38,6 +36,9 @@ const myPeer = new Peer();
      connectToNewUser(userId,stream)
 
   })
+
+  // FOR CHATTING 
+
   let text = $("input");
 //when press enter send message
 $('html').keydown(function (e) {
@@ -78,6 +79,8 @@ socket.on("createMessage", message => {
       })
    })
 
+   //CONNECTING TO A DIFFERENT USER
+
  function connectToNewUser(userId,stream){
     const call=myPeer.call(userId,stream)
     const video=document.createElement('video')
@@ -90,6 +93,7 @@ socket.on("createMessage", message => {
      peers[userId]=call
 }
 
+//STREAMING THE VIDEO
 function addVideoStream(video,stream){
     video.srcObject=stream
     video.addEventListener('loadedmetadata',()=>{
@@ -154,6 +158,8 @@ const muteUnmute = () => {
     `
     document.querySelector('.main_video_button').innerHTML = html;
   }
+
+  //MAKING CHAT WINDOW SCROLLABLE
  const scrollToBottom =()=>{
    var d=$('.main_chat_window');
    d.scrollTop(d.prop("scrollHeight"));
